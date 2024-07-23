@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Weather App</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Weather App</h1>
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Get Weather</button>
+      </form>
+
+      {% if error_message %}
+      <p style="color: red;">{{ error_message }}</p>
+      {% endif %}
+
+      {% if weather_data %}
+      <h2>Weather in {{ weather_data.city }}</h2>
+      <p>Temperature: {{ weather_data.current_weather.temperature }}°C</p>
+      <p>Wind Speed: {{ weather_data.current_weather.windspeed }} km/h</p>
+      <p>Weather: {{ weather_data.current_weather.weathercode }}</p>
+      {% endif %}
+    </div>
+  </body>
+</html>
